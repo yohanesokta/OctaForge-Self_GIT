@@ -1,50 +1,133 @@
 {{template "base/head" .}}
-<div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home_title"}}{{end}}" class="page-content home">
-	<div class="tw-mb-8 tw-px-8">
-		<div class="center">
-			<img class="logo" width="220" height="220" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}">
-			<div class="hero">
-				<h1 class="ui icon header title tw-text-balance">
-					{{AppName}}
-				</h1>
-				<h2 class="tw-text-balance">{{ctx.Locale.Tr "startpage.app_desc"}}</h2>
+
+<style>
+	/* Animasi Floating */
+	@keyframes float {
+		0% { transform: translateY(0px); }
+		50% { transform: translateY(-15px); }
+		100% { transform: translateY(0px); }
+	}
+	.animate-float {
+		animation: float 4s ease-in-out infinite;
+	}
+
+	/* Glass Card yang adaptif 100% dengan tema Gitea */
+	.octa-card {
+		background: var(--color-box-body);
+		border: 1px solid var(--color-secondary);
+		border-radius: 1.5rem;
+		padding: 2rem;
+		transition: all 0.3s ease;
+		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+	}
+	.octa-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+		border-color: var(--color-primary);
+	}
+
+	/* Penyesuaian teks agar selalu kontras di tema apapun */
+	.octa-text-primary { color: var(--color-text); }
+	.octa-text-secondary { color: var(--color-text-light); }
+
+	/* Background Hero yang adaptif */
+	.octa-hero-bg {
+		background: linear-gradient(to bottom, var(--color-primary-light-6), transparent);
+	}
+</style>
+
+<div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home_title"}}{{end}}" class="page-content home tw-min-h-screen tw-pb-20">
+
+	<div class="octa-hero-bg tw-pt-16 md:tw-pt-24 tw-pb-16 md:tw-pb-24 tw-px-4">
+		<div class="tw-max-w-5xl tw-mx-auto tw-text-center">
+
+			<div class="tw-flex tw-justify-center tw-mb-8">
+				<div class="animate-float tw-p-4 tw-rounded-3xl" style="background: var(--color-box-body); border: 1px solid var(--color-secondary); box-shadow: 0 10px 30px var(--color-primary-light-4);">
+					<img class="logo tw-w-24 tw-h-24 md:tw-w-32 md:tw-h-32" src="{{AssetUrlPrefix}}/img/logo.svg" alt="OctaForge Logo">
+				</div>
+			</div>
+
+			<div class="tw-mb-6 tw-flex tw-justify-center">
+				<div class="tw-rounded-full tw-px-4 tw-py-1.5 tw-text-xs sm:tw-text-sm tw-font-medium" style="background: var(--color-box-body); color: var(--color-text-light); border: 1px solid var(--color-secondary);">
+					System Architecture & Design by <span style="color: var(--color-primary); font-weight: bold;">Yohanes Oktanio</span>
+				</div>
+			</div>
+
+			<h1 class="tw-text-4xl sm:tw-text-5xl md:tw-text-7xl tw-font-extrabold tw-tracking-tight tw-mb-6 octa-text-primary">
+				Welcome to <br class="sm:tw-hidden" />
+				<span class=" tw-bg-clip-text tw-bg-gradient-to-r tw-from-blue-500 tw-to-cyan-400">OctaForge</span>
+
+			</h1>
+
+			<p class="tw-mt-4 md:tw-mt-6 tw-text-base md:tw-text-lg tw-leading-8 tw-max-w-2xl tw-mx-auto tw-text-balance octa-text-secondary">
+				{{ctx.Locale.Tr "startpage.app_desc"}} A lightning-fast, highly optimized code hosting platform built for modern development workflows.
+			</p>
+
+			<div class="tw-mt-8 md:tw-mt-10 tw-flex tw-flex-col sm:tw-flex-row tw-items-center tw-justify-center tw-gap-4 sm:tw-gap-x-6">
+				{{if .IsSigned}}
+				<a href="{{AppSubUrl}}/explore/repos" class="ui primary button tw-rounded-full tw-px-8 tw-py-4 tw-text-base">
+					Explore Repositories
+				</a>
+				{{else}}
+				<a href="{{AppSubUrl}}/user/sign_up" class="ui primary button tw-rounded-full tw-px-8 tw-py-4 tw-text-base">
+					Get Started Now
+				</a>
+				<a href="{{AppSubUrl}}/user/login" class="tw-text-base tw-font-semibold hover:tw-underline octa-text-primary">
+					Sign In <span aria-hidden="true">→</span>
+				</a>
+				{{end}}
 			</div>
 		</div>
 	</div>
-	<div class="ui stackable middle very relaxed page grid">
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-flame"}} {{ctx.Locale.Tr "startpage.install"}}
-			</h1>
-			<p class="large tw-text-balance">
-				{{ctx.Locale.Tr "startpage.install_desc" "https://docs.gitea.com/installation/install-from-binary" "https://github.com/go-gitea/gitea/tree/master/docker" "https://docs.gitea.com/installation/install-from-package"}}
-			</p>
+
+	<div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8 tw-mt-12">
+		<div class="tw-text-center tw-mb-10">
+			<h2 class="tw-text-2xl md:tw-text-3xl tw-font-bold octa-text-primary">Platform Highlights</h2>
+			<p class="tw-mt-3 octa-text-secondary">Everything you need to manage your codebase effectively.</p>
 		</div>
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-device-desktop"}} {{ctx.Locale.Tr "startpage.platform"}}
-			</h1>
-			<p class="large tw-text-balance">
-				{{ctx.Locale.Tr "startpage.platform_desc" "https://go.dev/"}}
-			</p>
-		</div>
-	</div>
-	<div class="ui stackable middle very relaxed page grid">
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-rocket"}} {{ctx.Locale.Tr "startpage.lightweight"}}
-			</h1>
-			<p class="large tw-text-balance">
-				{{ctx.Locale.Tr "startpage.lightweight_desc"}}
-			</p>
-		</div>
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				{{svg "octicon-code"}} {{ctx.Locale.Tr "startpage.license"}}
-			</h1>
-			<p class="large tw-text-balance">
-				{{ctx.Locale.Tr "startpage.license_desc" "https://code.gitea.io/gitea" "code.gitea.io/gitea" "https://github.com/go-gitea/gitea"}}
-			</p>
+
+		<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6 md:tw-gap-8">
+
+			<div class="octa-card tw-group tw-relative tw-overflow-hidden">
+				<div class="tw-w-14 tw-h-14 md:tw-w-16 md:tw-h-16 tw-bg-gradient-to-br tw-from-orange-400 tw-to-orange-600  tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-mb-6">
+					{{svg "octicon-flame" 28}}
+				</div>
+				<h3 class="tw-text-xl md:tw-text-2xl tw-font-bold tw-mb-3 octa-text-primary">{{ctx.Locale.Tr "startpage.install"}}</h3>
+				<p class="octa-text-secondary tw-leading-relaxed">
+					{{ctx.Locale.Tr "startpage.install_desc" "https://docs.gitea.com/installation/install-from-binary" "https://github.com/go-gitea/gitea/tree/master/docker" "https://docs.gitea.com/installation/install-from-package"}}
+				</p>
+			</div>
+
+			<div class="octa-card tw-group tw-relative tw-overflow-hidden">
+				<div class="tw-w-14 tw-h-14 md:tw-w-16 md:tw-h-16 tw-bg-gradient-to-br tw-from-blue-400 tw-to-blue-600 tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-mb-6">
+					{{svg "octicon-device-desktop" 28}}
+				</div>
+				<h3 class="tw-text-xl md:tw-text-2xl tw-font-bold tw-mb-3 octa-text-primary">{{ctx.Locale.Tr "startpage.platform"}}</h3>
+				<p class="octa-text-secondary tw-leading-relaxed">
+					{{ctx.Locale.Tr "startpage.platform_desc" "https://go.dev/"}}
+				</p>
+			</div>
+
+			<div class="octa-card tw-group tw-relative tw-overflow-hidden">
+				<div class="tw-w-14 tw-h-14 md:tw-w-16 md:tw-h-16 tw-bg-gradient-to-br tw-from-green-400 tw-to-green-600 tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-mb-6">
+					{{svg "octicon-rocket" 28}}
+				</div>
+				<h3 class="tw-text-xl md:tw-text-2xl tw-font-bold tw-mb-3 octa-text-primary">{{ctx.Locale.Tr "startpage.lightweight"}}</h3>
+				<p class="octa-text-secondary tw-leading-relaxed">
+					{{ctx.Locale.Tr "startpage.lightweight_desc"}}
+				</p>
+			</div>
+
+			<div class="octa-card tw-group tw-relative tw-overflow-hidden">
+				<div class="tw-w-14 tw-h-14 md:tw-w-16 md:tw-h-16 tw-bg-gradient-to-br tw-from-purple-400 tw-to-purple-600 tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-mb-6">
+					{{svg "octicon-code" 28}}
+				</div>
+				<h3 class="tw-text-xl md:tw-text-2xl tw-font-bold tw-mb-3 octa-text-primary">{{ctx.Locale.Tr "startpage.license"}}</h3>
+				<p class="octa-text-secondary tw-leading-relaxed">
+					{{ctx.Locale.Tr "startpage.license_desc" "https://code.gitea.io/gitea" "code.gitea.io/gitea" "https://github.com/go-gitea/gitea"}}
+				</p>
+			</div>
+
 		</div>
 	</div>
 </div>

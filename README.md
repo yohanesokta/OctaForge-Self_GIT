@@ -1,4 +1,9 @@
-# Gitea
+# OctaForge
+> frok [Gitea](https://about.gitea.com/). git server untuk host pribadi di server yohanes
+
+Aplikasi ini sepenuhnya di maintain oleh [saya](https://github.com/yohanesokta) dengan berbagai fitur yang ada. Lihat source asli [Gitea](https://about.gitea.com/) untuk proyek asli dari aplikasi ini.
+
+---
 
 [![](https://github.com/go-gitea/gitea/actions/workflows/release-nightly.yml/badge.svg?branch=main)](https://github.com/go-gitea/gitea/actions/workflows/release-nightly.yml?query=branch%3Amain "Release Nightly")
 [![](https://img.shields.io/discord/322538954119184384.svg?logo=discord&logoColor=white&label=Discord&color=5865F2)](https://discord.gg/Gitea "Join the Discord chat at https://discord.gg/Gitea")

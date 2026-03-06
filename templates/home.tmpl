@@ -1,7 +1,6 @@
 {{template "base/head" .}}
 
 <style>
-	/* Animasi Floating */
 	@keyframes float {
 		0% { transform: translateY(0px); }
 		50% { transform: translateY(-15px); }
@@ -11,7 +10,6 @@
 		animation: float 4s ease-in-out infinite;
 	}
 
-	/* Glass Card yang adaptif 100% dengan tema Gitea */
 	.octa-card {
 		background: var(--color-box-body);
 		border: 1px solid var(--color-secondary);
@@ -26,11 +24,9 @@
 		border-color: var(--color-primary);
 	}
 
-	/* Penyesuaian teks agar selalu kontras di tema apapun */
 	.octa-text-primary { color: var(--color-text); }
 	.octa-text-secondary { color: var(--color-text-light); }
 
-	/* Background Hero yang adaptif */
 	.octa-hero-bg {
 		background: linear-gradient(to bottom, var(--color-primary-light-6), transparent);
 	}
